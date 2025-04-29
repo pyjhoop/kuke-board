@@ -28,4 +28,16 @@ class ArticleRepositoryTest {
         System.out.println("count: " + count);
     }
 
+    @Test
+    void findAllInfiniteScrollTest(){
+        List<Article> articles = articleRepository.findAllInfiniteScroll(1L, 30L);
+        System.out.println("articles size: " + articles.size());
+
+        Long lastArticleId = articles.getLast().getArticleId();
+
+        List<Article> articles2 = articleRepository.findAllInfiniteScroll(1L, 30L, lastArticleId);
+
+        System.out.println("articles size: " + articles2.size());
+    }
+
 }
